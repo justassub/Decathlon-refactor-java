@@ -1,10 +1,13 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
+    private List<String> filesToRead = Collections.singletonList(
+            "./src/main/resources/input.txt"
+    );
+
     public static void main(String[] args) throws IOException {
-        Stream<String> lines = Files.lines(Paths.get("./src/main/resources/input.txt"));
+
     }
 }
