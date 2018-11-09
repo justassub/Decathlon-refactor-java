@@ -1,6 +1,12 @@
 package model;
 
-import lombok.Value;
+import competition.fieldEvents.*;
+import competition.trackingEvents.Running100Meters;
+import competition.trackingEvents.Running110Hurdles;
+import competition.trackingEvents.Running1500Meters;
+import competition.trackingEvents.Running400Meters;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,19 +17,21 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Value
+@Getter
+@ToString
 public class Athlete {
-    private String fullName;
-    private Duration running_100_meters;
-    private double long_jump_meters;
-    private double shot_put_meters;
-    private double high_jump_meters;
-    private Duration running_400;
-    private Duration running_110_hurdles;
-    private double discus_throw_meters;
-    private double pole_vault_meters;
-    private double javelin_throw_meters;
-    private Duration running_1500_meters;
+    private final String fullName;
+    private final Duration running_100_meters;
+    private final double long_jump_meters;
+    private final double shot_put_meters;
+    private final double high_jump_meters;
+    private final Duration running_400_meters;
+    private final Duration running_110_hurdles;
+    private final double discus_throw_meters;
+    private final double pole_vault_meters;
+    private final double javelin_throw_meters;
+    private final Duration running_1500_meters;
+    private int scores;
 
     public Athlete(String resultLine) {
         String[] splitedResults = resultLine.split(";");
@@ -36,7 +44,7 @@ public class Athlete {
         long_jump_meters = resultsList.get(1);
         shot_put_meters = resultsList.get(2);
         high_jump_meters = resultsList.get(3);
-        running_400 = calculateDurationFromDouble(resultsList.get(4));
+        running_400_meters = calculateDurationFromDouble(resultsList.get(4));
         running_110_hurdles = calculateDurationFromDouble(resultsList.get(5));
         discus_throw_meters = resultsList.get(6);
         pole_vault_meters = resultsList.get(7);
@@ -52,7 +60,7 @@ public class Athlete {
                 .collect(toList());
     }
 
-    public Duration calculateDurationFromDouble(Double time) {
+    private Duration calculateDurationFromDouble(Double time) {
         BigDecimal bd = new BigDecimal((time - Math.floor(time)) * 1000);
         return Duration.ofSeconds(time.intValue())
                 .plusMillis(bd.setScale(0, RoundingMode.HALF_DOWN).intValue());
@@ -65,5 +73,25 @@ public class Athlete {
                 .plusMillis(Long.parseLong(splitedTime[2]) * 10);
     }
 
+    public void calculateTotalScore() {
+        int scores = 0;
+        scores += new Running100Meters().calculatePoints(running_100_meters);
+        scores += new Running110Hurdles().calculatePoints(running_110_hurdles);
+        scores += new Running400Meters().calculatePoints(running_400_meters);
+        scores += new Running1500Meters().calculatePoints(running_1500_meters);
 
+        scores += new DiscusThrowEvent().calculatePoints(discus_throw_meters);
+        scores += new JavelinThrowEvent().calculatePoints(javelin_throw_meters);
+        scores += new PoleVaultEvent().calculatePoints(pole_vault_meters);
+        scores += new ShotPutEvent().calculatePoints(shot_put_meters);
+
+        scores += new HighJumpEvent().calculatePoints(high_jump_meters);
+        scores += new LongJumpEvent().calculatePoints(long_jump_meters);
+
+        this.scores=scores;
+    }
+
+    public void setScores(int scores) {
+        this.scores = scores;
+    }
 }

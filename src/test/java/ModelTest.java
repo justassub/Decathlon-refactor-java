@@ -29,6 +29,7 @@ public class ModelTest {
                         2.60,
                         35.81,
                         createDurationFromString("PT5M25.72S"),
+                        4200
                 },
                 {
                         "Jaana Lind;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75",
@@ -43,6 +44,7 @@ public class ModelTest {
                         2.80,
                         33.88,
                         createDurationFromString("PT6M22.75S"),
+                        3494
                 },
         });
     }
@@ -71,22 +73,26 @@ public class ModelTest {
     public double javelinThrow;
     @Parameter(11)
     public Duration running1500M;
+    @Parameter(12)
+    public int totalScores;
 
     @Test
     public void modelTests() {
         Athlete athlete = new Athlete(resultLine);
-
+        athlete.calculateTotalScore();
+        System.out.println(athlete.getScores());
         Assert.assertEquals(athlete.getFullName(), expectedName);
         Assert.assertEquals(athlete.getRunning_100_meters(), result100M);
         Assert.assertEquals(athlete.getLong_jump_meters(), resultLongJump, 0.001);
         Assert.assertEquals(athlete.getShot_put_meters(), resultShotPut, 0.001);
         Assert.assertEquals(athlete.getHigh_jump_meters(), resultHighJump, 0.001);
-        Assert.assertEquals(athlete.getRunning_400(), running400M);
+        Assert.assertEquals(athlete.getRunning_400_meters(), running400M);
         Assert.assertEquals(athlete.getRunning_110_hurdles(), running110M);
         Assert.assertEquals(athlete.getDiscus_throw_meters(), discusThrow, 0.001);
         Assert.assertEquals(athlete.getPole_vault_meters(), poleVault, 0.001);
         Assert.assertEquals(athlete.getJavelin_throw_meters(), javelinThrow, 0.001);
         Assert.assertEquals(athlete.getRunning_1500_meters(), running1500M);
+        Assert.assertTrue(athlete.getScores() == totalScores);
     }
 
     private static Duration createDurationFromString(String durationString) {
