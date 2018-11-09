@@ -5,7 +5,6 @@ import competition.trackingEvents.Running100Meters;
 import competition.trackingEvents.Running110Hurdles;
 import competition.trackingEvents.Running1500Meters;
 import competition.trackingEvents.Running400Meters;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 

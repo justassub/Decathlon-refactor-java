@@ -20,7 +20,6 @@ public class Main {
         ScoreCalculator scoreCalculator = new ScoreCalculator(athletes);
         scoreCalculator.calculateScores();
         scoreCalculator.rankPlayers();
-        System.out.println(scoreCalculator.getAthletes());
 
     }
 

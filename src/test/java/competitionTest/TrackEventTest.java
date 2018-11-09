@@ -1,7 +1,6 @@
 package competitionTest;
 
-import competition.*;
-import competition.fieldEvents.JavelinThrowEvent;
+import competition.Event;
 import competition.trackingEvents.Running100Meters;
 import competition.trackingEvents.Running110Hurdles;
 import competition.trackingEvents.Running1500Meters;
