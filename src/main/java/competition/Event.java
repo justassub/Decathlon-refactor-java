@@ -2,7 +2,7 @@ package competition;
 
 public interface Event {
     //CLASS MUST OVERRIDE !
-    double calculatePoints(Object o);
+    int  calculatePoints(Object o);
 
     double get_A_Parameter();
 

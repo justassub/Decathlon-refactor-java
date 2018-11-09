@@ -1,9 +1,12 @@
-package competition;
+package competition.trackingEvents;
 
-public class Running100Meters extends RunningEvent {
-    private static final double A_PARAMETER = 25.4347;
-    private static final double B_PARAMETER = 18;
+import competition.TrackEvent;
+
+public class Running400Meters extends TrackEvent {
+    private static final double A_PARAMETER = 1.53775;
+    private static final double B_PARAMETER = 82;
     private static final double C_PARAMETER = 1.81;
+
 
     @Override
     public double get_A_Parameter() {
