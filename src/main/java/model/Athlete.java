@@ -5,6 +5,7 @@ import competition.trackingEvents.Running100Meters;
 import competition.trackingEvents.Running110Hurdles;
 import competition.trackingEvents.Running1500Meters;
 import competition.trackingEvents.Running400Meters;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -32,6 +33,7 @@ public class Athlete {
     private final double javelin_throw_meters;
     private final Duration running_1500_meters;
     private int scores;
+    private int place;
 
     public Athlete(String resultLine) {
         String[] splitedResults = resultLine.split(";");
@@ -88,8 +90,13 @@ public class Athlete {
         scores += new HighJumpEvent().calculatePoints(high_jump_meters);
         scores += new LongJumpEvent().calculatePoints(long_jump_meters);
 
-        this.scores=scores;
+        this.scores = scores;
     }
+
+    public void setPlace(int place) {
+        this.place = place;
+    }
+
 
     public void setScores(int scores) {
         this.scores = scores;

@@ -80,7 +80,6 @@ public class ModelTest {
     public void modelTests() {
         Athlete athlete = new Athlete(resultLine);
         athlete.calculateTotalScore();
-        System.out.println(athlete.getScores());
         Assert.assertEquals(athlete.getFullName(), expectedName);
         Assert.assertEquals(athlete.getRunning_100_meters(), result100M);
         Assert.assertEquals(athlete.getLong_jump_meters(), resultLongJump, 0.001);

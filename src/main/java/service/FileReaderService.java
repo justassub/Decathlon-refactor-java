@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public class FileReaderService {
-    public Stream<String> readFile(Path file) {
+    public static Stream<String> readFile(Path file) {
         try {
             return Files.lines(file);
         } catch (Exception anyException) {
