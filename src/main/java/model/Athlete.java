@@ -62,7 +62,7 @@ public class Athlete {
         String[] splitedTime = time.split("\\.");
         return Duration.ofMinutes(Long.parseLong(splitedTime[0]))
                 .plusSeconds(Long.parseLong(splitedTime[1]))
-                .plusMillis(Long.parseLong(splitedTime[2])*10);
+                .plusMillis(Long.parseLong(splitedTime[2]) * 10);
     }
 
 
