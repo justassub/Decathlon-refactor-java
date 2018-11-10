@@ -97,7 +97,4 @@ public class Athlete {
     }
 
 
-    public void setScores(int scores) {
-        this.scores = scores;
-    }
 }

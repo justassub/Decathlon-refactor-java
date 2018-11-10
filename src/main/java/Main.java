@@ -17,10 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         loadAthletes();
-        ScoreCalculator scoreCalculator = new ScoreCalculator(athletes);
-        scoreCalculator.calculateScores();
-        scoreCalculator.rankPlayers();
-
+        calculateRankings();
     }
 
     private static void loadAthletes() {
@@ -29,5 +26,11 @@ public class Main {
                 .flatMap(stringStream -> stringStream)
                 .map(Athlete::new)
                 .forEach(athletes::add);
+    }
+
+    private static void calculateRankings() {
+        ScoreCalculator scoreCalculator = new ScoreCalculator(athletes);
+        scoreCalculator.calculateScores();
+        scoreCalculator.rankPlayers();
     }
 }
