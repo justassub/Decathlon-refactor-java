@@ -1,4 +1,5 @@
 import model.Athlete;
+import model.AthleteFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,7 +79,7 @@ public class ModelTest {
 
     @Test
     public void modelTests() {
-        Athlete athlete = new Athlete(resultLine);
+        Athlete athlete = AthleteFactory.buildFromResult(resultLine);
         athlete.calculateTotalScore();
         Assert.assertEquals(athlete.getFullName(), expectedName);
         Assert.assertEquals(athlete.getRunning_100_meters(), result100M);

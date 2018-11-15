@@ -1,4 +1,5 @@
 import model.Athlete;
+import model.AthleteFactory;
 import service.FileReaderService;
 import service.ScoreCalculator;
 
@@ -24,7 +25,7 @@ public class Main {
         filesToRead
                 .map(FileReaderService::readFile)
                 .flatMap(stringStream -> stringStream)
-                .map(Athlete::new)
+                .map(AthleteFactory::buildFromResult)
                 .forEach(athletes::add);
     }
 

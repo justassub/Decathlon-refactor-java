@@ -1,4 +1,5 @@
 import model.Athlete;
+import model.AthleteFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import service.ScoreCalculator;
@@ -10,10 +11,10 @@ public class ScoreCalculatorTest {
     @Test
     public void calculateCorrectlyPoi() {
         List<Athlete> athleteList = Arrays.asList(
-                new Athlete("First Place;12.61;5.00;9.22;1.50;60.39;16.43;21.60;2.60;35.81;5.25.72"),
-                new Athlete("Second Place;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75"),
-                new Athlete("Second Place Two;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75"),
-                new Athlete("Fourth Place;13.85;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75")
+                AthleteFactory.buildFromResult("First Place;12.61;5.00;9.22;1.50;60.39;16.43;21.60;2.60;35.81;5.25.72"),
+                AthleteFactory.buildFromResult("Second Place;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75"),
+                AthleteFactory.buildFromResult("Second Place Two;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75"),
+                AthleteFactory.buildFromResult("Fourth Place;13.85;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75")
         );
         ScoreCalculator scoreCalculator = new ScoreCalculator(athleteList);
         scoreCalculator.calculateScores();
