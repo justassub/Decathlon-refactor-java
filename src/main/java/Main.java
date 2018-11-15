@@ -25,7 +25,9 @@ public class Main {
         filesToRead
                 .map(FileReaderService::readFile)
                 .flatMap(stringStream -> stringStream)
+                .parallel()
                 .map(AthleteFactory::buildFromResult)
+                .filter(Main::checkIfAthleteIsNotNull)
                 .forEach(athletes::add);
     }
 
@@ -33,5 +35,9 @@ public class Main {
         PlayerScoreCalculator scoreCalculator = new PlayerScoreCalculator(athletes);
         scoreCalculator.calculateScores();
         scoreCalculator.rankPlayers();
+    }
+
+    public static boolean checkIfAthleteIsNotNull(Athlete athlete) {
+        return athlete != null;
     }
 }

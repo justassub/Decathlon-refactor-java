@@ -8,7 +8,7 @@ public class AthleteFactory {
     public static Athlete buildFromResult(String resultLine) {
         String[] results = resultLine.split(";");
         if (results.length != 11) {
-            throw new RuntimeException("Bad results");
+            return null;
         }
         return Athlete.builder()
                 .fullName(results[0])
@@ -39,5 +39,6 @@ public class AthleteFactory {
                 .plusSeconds(Long.parseLong(splitedTime[1]))
                 .plusMillis(Long.parseLong(splitedTime[2]) * 10);
     }
+
 
 }
