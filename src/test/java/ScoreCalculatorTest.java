@@ -2,7 +2,7 @@ import model.Athlete;
 import model.AthleteFactory;
 import org.junit.Assert;
 import org.junit.Test;
-import service.ScoreCalculator;
+import service.PlayerScoreCalculator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,7 @@ public class ScoreCalculatorTest {
                 AthleteFactory.buildFromResult("Second Place Two;13.75;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75"),
                 AthleteFactory.buildFromResult("Fourth Place;13.85;4.84;10.12;1.50;68.44;19.18;30.85;2.80;33.88;6.22.75")
         );
-        ScoreCalculator scoreCalculator = new ScoreCalculator(athleteList);
+        PlayerScoreCalculator scoreCalculator = new PlayerScoreCalculator(athleteList);
         scoreCalculator.calculateScores();
         scoreCalculator.rankPlayers();
 

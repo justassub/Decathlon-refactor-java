@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import service.PlayerScoreCalculator;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -80,7 +81,7 @@ public class ModelTest {
     @Test
     public void modelTests() {
         Athlete athlete = AthleteFactory.buildFromResult(resultLine);
-        athlete.calculateTotalScore();
+        new PlayerScoreCalculator(Arrays.asList(athlete)).calculateScores();
         Assert.assertEquals(athlete.getFullName(), expectedName);
         Assert.assertEquals(athlete.getRunning_100_meters(), result100M);
         Assert.assertEquals(athlete.getLong_jump_meters(), resultLongJump, 0.001);

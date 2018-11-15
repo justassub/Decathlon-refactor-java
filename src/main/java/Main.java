@@ -1,7 +1,7 @@
 import model.Athlete;
 import model.AthleteFactory;
 import service.FileReaderService;
-import service.ScoreCalculator;
+import service.PlayerScoreCalculator;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,7 +30,7 @@ public class Main {
     }
 
     private static void calculateRankings() {
-        ScoreCalculator scoreCalculator = new ScoreCalculator(athletes);
+        PlayerScoreCalculator scoreCalculator = new PlayerScoreCalculator(athletes);
         scoreCalculator.calculateScores();
         scoreCalculator.rankPlayers();
     }
